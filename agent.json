@@ -1,13 +1,6 @@
-[{
-    "name": "GomokuAgent3",
-    "agent_class": "GomokuAgentIII.GomokuAgent3",
-    "author": "Towers of Hanoi 3",
-    "description": "This is an AI-powered Gomoku agent 3 that plays the game of Gomoku."
-},
 {
-    "name": "GomokuAgent4",
-    "agent_class": "GomokuAgentIII.GomokuAgent4",
-    "author": "Towers of Hanoi 4",
-    "description": "This is an AI-powered Gomoku agent 4 that plays the game of Gomoku."
+    "name": "GomokuAgent",
+    "agent_class": "GomokuAgent.GomokuAgent",
+    "author": "Towers of Hanoi",
+    "description": "This is an AI-powered Gomoku agent that plays the game of Gomoku."
 }
-]

@@ -6,7 +6,7 @@ from gomoku.llm import OpenAIGomokuClient
 from gomoku.core.models import Player
 
 
-class GomokuAgent(Agent):
+class GomokuAgent1(Agent):
     """
     A Gomoku AI agent that uses a language model to make strategic moves.
     Inherits from the base Agent class provided by the Gomoku framework.

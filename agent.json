@@ -1,6 +1,13 @@
-{
+[{
     "name": "GomokuAgent",
     "agent_class": "GomokuAgent.GomokuAgent",
     "author": "Towers of Hanoi",
     "description": "This is an AI-powered Gomoku agent that plays the game of Gomoku."
+},
+{
+    "name": "GomokuAgent2",
+    "agent_class": "GomokuAgent2.GomokuAgent2",
+    "author": "Towers of Hanoi",
+    "description": "This is an AI-powered Gomoku agent that plays the game of Gomoku."
 }
+]

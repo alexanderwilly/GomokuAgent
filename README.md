@@ -10,7 +10,7 @@ python3 -m venv .venv
 ```
 
 After the init process completes and the virtualenv is created, you can use the following step to activate your virtualenv.<br/>
-If you are using **Windows**, use Windows or Visual Studio Code command prompt:
+If you are using **Windows**, use the Windows or Visual Studio Code command prompt:
 ```bash
 .venv\Scripts\activate.bat
 ```

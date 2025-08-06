@@ -6,7 +6,7 @@ from gomoku.llm import OpenAIGomokuClient
 from gomoku.core.models import Player
 
 
-class GomokuAgent1(Agent):
+class GomokuAgent3(Agent):
     """
     A Gomoku AI agent that uses a language model to make strategic moves.
     Inherits from the base Agent class provided by the Gomoku framework.
@@ -83,7 +83,7 @@ Respond with the best next move using this exact JSON format (no explanation):
         return game_state.get_legal_moves()[0]
     
 
-class GomokuAgent3(Agent):
+class GomokuAgent4(Agent):
     """
     A Gomoku AI agent that uses a language model to make strategic moves.
     Inherits from the base Agent class provided by the Gomoku framework.

@@ -4,6 +4,7 @@ import json
 from gomoku import Agent
 from gomoku.llm import OpenAIGomokuClient
 from gomoku.core.models import Player
+from os import getenv
 
 
 class GomokuAgent(Agent):
@@ -18,7 +19,11 @@ class GomokuAgent(Agent):
         This method is called once when the agent is created.
         """
         # Create an OpenAI-compatible client using the Gemma2 model for move generation
-        self.llm = OpenAIGomokuClient(model="google/gemma-2-9b-it")
+        self.llm = OpenAIGomokuClient(
+            api_key=getenv("OPENAI_API_KEY"),
+            model="google/gemma-2-9b-it",
+            endpoint=getenv("OPENAI_BASE_URL"),
+        )
 
     async def get_move(self, game_state):
         """

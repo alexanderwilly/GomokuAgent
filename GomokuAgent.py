@@ -18,7 +18,7 @@ class GomokuAgent(Agent):
         This method is called once when the agent is created.
         """
         # Create an OpenAI-compatible client using the Gemma2 model for move generation
-        self.llm = OpenAIGomokuClient(model="gemma2-9b-it")
+        self.llm = OpenAIGomokuClient(model="google/gemma-2-9b-it")
 
     async def get_move(self, game_state):
         """

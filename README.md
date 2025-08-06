@@ -1,7 +1,7 @@
 # 🤖 GomokuAgent 🤖
 
 ### Installation Setup
-Create Virtual Environment using Windows or Visual Studio Code terminal:
+Create a virtual environment using terminal:
 ```bash
 # use this command to create virtual environment
 python -m venv .venv

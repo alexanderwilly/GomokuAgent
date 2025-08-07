@@ -4,7 +4,6 @@ import json
 from gomoku import Agent
 from gomoku.llm import OpenAIGomokuClient
 from gomoku.core.models import Player
-from os import getenv
 
 
 class GomokuAgent(Agent):

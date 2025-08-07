@@ -20,9 +20,7 @@ class GomokuAgent(Agent):
         """
         # Create an OpenAI-compatible client using the Gemma2 model for move generation
         self.llm = OpenAIGomokuClient(
-            api_key=getenv("OPENAI_API_KEY"),
-            model="google/gemma-2-9b-it",
-            endpoint=getenv("OPENAI_BASE_URL"),
+            model="google/gemma-2-9b-it"
         )
 
     async def get_move(self, game_state):

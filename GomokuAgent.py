@@ -74,7 +74,6 @@ Examples:
 
         # Convert the game board to a human-readable string format
         board_str = game_state.format_board("standard")
-        board_size = game_state.board_size
 
 
         board_prompt = f"Current board state:\n{board_str}\n"

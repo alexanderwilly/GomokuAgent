@@ -9,6 +9,7 @@
   <ol>
     <li><a href="#setup-guide">Setup Guide</a></li>
     <li><a href="#game-framework">Game Framework</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -51,6 +52,13 @@ git push # or git push --set-upstream origin <new-branch-name>
 The game runs will be based on the following framework: <br/><br/>
 <a href = "https://github.com/sitfoxfly/gomoku-ai" target="_blank">
   <img height = "200" src = "https://github-readme-stats.vercel.app/api/pin/?username=sitfoxfly&repo=gomoku-ai">
+</a>
+
+## Contributors
+
+<a id="contributors"></a>
+<a href="https://github.com/alexanderwilly/GomokuAgent/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alexanderwilly/GomokuAgent" alt="contrib.rocks image" />
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

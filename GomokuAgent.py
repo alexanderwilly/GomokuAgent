@@ -74,8 +74,6 @@ Examples:
 
         # Convert the game board to a human-readable string format
         board_str = game_state.format_board("standard")
-        board_size = game_state.board_size
-
 
         board_prompt = f"Current board state:\n{board_str}\n"
         board_prompt += f"Current player: {game_state.current_player.value}\n"
@@ -98,8 +96,15 @@ Examples:
             },
         ]
 
+        
+
         # Send the messages to the language model and get the response
         content = await self.llm.complete(messages)
+
+        print("💡 Response:\n\n")
+        print(content)
+        print()
+
 
         # Parse the LLM response to extract move coordinates
         try:
@@ -117,4 +122,4 @@ Examples:
             pass
 
         # Fallback: if LLM response is invalid, choose the first available legal move
-        return game_state.get_legal_moves()[0]
+        return game_state.get_legal_moves()[-1]

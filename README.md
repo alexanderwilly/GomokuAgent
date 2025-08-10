@@ -41,7 +41,8 @@ To save your progress and push into GitHub repo:
 ```
 git add .
 git commit -m "<your-message>"
-git push # or git push --set-upstream origin <new-branch-name>
+git push
+# or git push --set-upstream origin <new-branch-name>
 ```
 
 

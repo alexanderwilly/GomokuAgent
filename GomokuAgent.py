@@ -19,7 +19,7 @@ class GomokuAgent(Agent):
         """
         # Create an OpenAI-compatible client using the Gemma2 model for move generation
         self.llm = OpenAIGomokuClient(
-            model="google/gemma-2-9b-it"
+            model="mistralai/mistral-7b-instruct-v0.2"
         )
 
     async def get_move(self, game_state):
@@ -46,7 +46,24 @@ class GomokuAgent(Agent):
         messages = [
             {
                 "role": "system",
-                "content": f"You are a professional Gomoku (5-in-a-row) player. You are playing as {player}, and your opponent is {rival}. Your task is to examine the current 8x8 board and select the best next move to increase your chances of winning. Aim for a strategic advantage or to block your opponent if necessary.",
+                "content": f"""
+You are an expert Gomoku (Five-in-a-Row) player. You are playing as {player}, and your opponent is {rival}. 
+Your task is to analyze the bard and choose the optimal move for the current player according to this exact priority hierarchy:
+1. WIN: Complete a 5-in-a-row.
+2. BLOCK: Prevent the opponent's 5-in-a-row.
+3. Fork: Create a move that establishes two simultaneous threats.
+4. Threaten: Set up a future win that forces the opponent to defend.
+5. Develop: If none of the above apply, play near the center or existing pieces to build an advantage.
+
+Rules:
+- Only choose an empty space marked as dot '.'.
+- Use 0-indexed coordinates for "row" and "col".
+- Respond with valid JSON only in the exact format below (no extra text or comments):
+{{
+  "row": <integer>,
+  "col": <integer>
+}}
+""",
             },
             {
                 "role": "user",

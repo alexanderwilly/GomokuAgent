@@ -75,7 +75,6 @@ Examples:
         # Convert the game board to a human-readable string format
         board_str = game_state.format_board("standard")
 
-
         board_prompt = f"Current board state:\n{board_str}\n"
         board_prompt += f"Current player: {game_state.current_player.value}\n"
         board_prompt += f"Move count: {len(game_state.move_history)}\n"

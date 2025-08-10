@@ -2,7 +2,19 @@
 
 # 🤖 GomokuAgent 🤖
 
-### Setup Guide
+## Table of Contents
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#setup-guide">Setup Guide</a></li>
+    <li><a href="#game-framework">Game Framework</a></li>
+  </ol>
+</details>
+
+## Setup Guide
+
+<a id="setup-guide"></a>
 Clone this repository with SSH following this guide:
 ```
 # GitHub documentation
@@ -33,7 +45,9 @@ git push # or git push --set-upstream origin <new-branch-name>
 
 
 
-### Game Framework
+## Game Framework
+
+<a id="game-framework"></a>
 The game runs will be based on the following framework: <br/><br/>
 <a href = "https://github.com/sitfoxfly/gomoku-ai" target="_blank">
   <img height = "200" src = "https://github-readme-stats.vercel.app/api/pin/?username=sitfoxfly&repo=gomoku-ai">

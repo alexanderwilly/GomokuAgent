@@ -1,6 +1,7 @@
 {
-    "name": "GomokuAgent",
-    "agent_class": "GomokuAgent.GomokuAgent",
-    "author": "Towers of Hanoi",
-    "description": "This is an AI-powered Gomoku agent that plays the game of Gomoku."
+    "name": "MyLLMGomokuAgent",
+    "agent_class": "my_llm_agent.MyLLMGomokuAgent",
+    "author": "Group of 5 (Individual Contribution)",
+    "description": "An LLM-powered Gomoku agent that leverages an open-weight Hugging Face model to play on an 8x8 board.",
+    "version": "1.0.0"
 }

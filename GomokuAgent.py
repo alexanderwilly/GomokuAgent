@@ -19,8 +19,42 @@ class GomokuAgent(Agent):
         """
         # Create an OpenAI-compatible client using the Gemma2 model for move generation
         self.llm = OpenAIGomokuClient(
-            model="mistralai/mistral-7b-instruct-v0.2"
+            model="qwen/qwen-2.5-7b-instruct"
         )
+
+    def _create_system_prompt(self, game_state, player, rival) -> str:
+        """Create the system prompt that teaches the LLM how to play Gomoku."""
+        return f"""
+You are an expert Gomoku (Five-in-a-Row) player. You are {player}, your opponent is {rival}.
+Your task is to choose exactly one best move for {player} based on the current board, following this strategies:
+1. Control the center of the board early.
+2. If a move creates a five-in-a-row for {player}, choose it.
+3. If {rival} can win next turn (e.g., open four or equivalent threat), block it.
+4. If possible, choose a move that creates two or more simultaneous winning threats (e.g., two open fours).
+5. If no double threat exists, choose the move that creates the most powerful single threat, forcing {rival} to defend and setting up a future win.
+
+Output Rules:
+- The move must be on an empty square (marked as '.')
+- The row and col must be valid coordinates on the board (0-indexed)
+- Output only valid JSON in the exact format below.
+- No explanation, reasoning, or extra text. JSON only.
+
+Format:
+```json
+{{"row": <row_number>, "col": <col_number>}}
+```
+
+Examples:
+```json
+{{"row": 5, "col": 2}}
+```
+```json
+{{"row": 1, "col": 2}}
+```
+```json
+{{"row": 0, "col": 3}}
+```
+""".strip()
 
     async def get_move(self, game_state):
         """
@@ -42,41 +76,25 @@ class GomokuAgent(Agent):
         board_str = game_state.format_board("standard")
         board_size = game_state.board_size
 
+
+        board_prompt = f"Current board state:\n{board_str}\n"
+        board_prompt += f"Current player: {game_state.current_player.value}\n"
+        board_prompt += f"Move count: {len(game_state.move_history)}\n"
+        # board_size = game_state.board_size
+        if game_state.move_history:
+            last_move = game_state.move_history[-1]
+            board_prompt += f"Last move: {last_move.player.value} at ({last_move.row}, {last_move.col})\n"
+            
+
         # Prepare the conversation messages for the language model
         messages = [
             {
                 "role": "system",
-                "content": f"""
-You are an expert Gomoku (Five-in-a-Row) player. You are playing as {player}, and your opponent is {rival}. 
-Your task is to analyze the bard and choose the optimal move for the current player according to this exact priority hierarchy:
-1. WIN: Complete a 5-in-a-row.
-2. BLOCK: Prevent the opponent's 5-in-a-row.
-3. Fork: Create a move that establishes two simultaneous threats.
-4. Threaten: Set up a future win that forces the opponent to defend.
-5. Develop: If none of the above apply, play near the center or existing pieces to build an advantage.
-
-Rules:
-- Only choose an empty space marked as dot '.'.
-- Use 0-indexed coordinates for "row" and "col".
-- Respond with valid JSON only in the exact format below (no extra text or comments):
-{{
-  "row": <integer>,
-  "col": <integer>
-}}
-""",
+                "content": self._create_system_prompt(game_state, player, rival),
             },
             {
                 "role": "user",
-                "content": f"""Here is the current board. The grid is {board_size}x{board_size}, with row and column indices labeled. Cells contain:
-- "." for empty
-- "{player}" for your stones
-- "{rival}" for opponent's stones
-
-{board_str}
-
-Respond with the best next move using this exact JSON format (no explanation):
-
-{{ "row": <row_number>, "col": <col_number> }}""",
+                "content": f"{board_prompt}\n\nProvide your next move as JSON without explanation.",
             },
         ]
 

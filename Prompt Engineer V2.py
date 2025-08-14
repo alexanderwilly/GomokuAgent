@@ -6,8 +6,26 @@ from gomoku.core.models import GameState, Player
 class PromptEngineerV2(Agent):
     """
     An advanced rule-based agent using the Minimax algorithm to look ahead,
-    with robust pattern recognition and contextual defense. This agent conforms
+    with robust pattern recognition, and contextual defense. This agent conforms
     to the gomoku-ai framework structure.
+
+    ---
+    ###> PROMPT STARTS HERE
+    Design Note: The logic for this agent is a coded implementation of the
+    best practices originally formulated in the V1 agent's prompt, which was:
+
+    "You are a world-champion Gomoku (Five-in-a-Row) grandmaster playing on an 8x8 board.
+    Your logic is impeccable, your thinking is strategic, and your goal is to win.
+
+    STRATEGIC HEURISTICS (IN ORDER OF ABSOLUTE PRIORITY):
+    1. WINNING MOVE: If you have an existing line of four, win.
+    2. BLOCK OPPONENT'S WIN: If the opponent has a line of four, block them.
+    3. CREATE FORK / UNBLOCKABLE THREAT: Create two simultaneous threats.
+    4. BLOCK OPPONENT'S OPEN-THREE: Block the opponent's open-ended line of three.
+    5. STRATEGIC DEVELOPMENT: Extend your own lines to create future threats.
+    6. POSITIONAL PLAY: Play near the center or existing stones."
+    ###> PROMPT ENDS HERE
+    ---
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -32,9 +50,9 @@ class PromptEngineerV2(Agent):
 
         for move in legal_moves:
             row, col = move
-            board[row][col] = self.player # CORRECTED INDEXING
+            board[row][col] = self.player
             score = self.minimax(board, self.depth - 1, -float('inf'), float('inf'), False)
-            board[row][col] = Player.EMPTY.value # CORRECTED INDEXING
+            board[row][col] = Player.EMPTY.value
             
             if score > best_score:
                 best_score = score
@@ -55,9 +73,9 @@ class PromptEngineerV2(Agent):
             max_eval = -float('inf')
             for move in legal_moves:
                 row, col = move
-                board[row][col] = self.player # CORRECTED INDEXING
+                board[row][col] = self.player
                 evaluation = self.minimax(board, depth - 1, alpha, beta, False)
-                board[row][col] = Player.EMPTY.value # CORRECTED INDEXING
+                board[row][col] = Player.EMPTY.value
                 max_eval = max(max_eval, evaluation)
                 alpha = max(alpha, evaluation)
                 if beta <= alpha: break
@@ -66,9 +84,9 @@ class PromptEngineerV2(Agent):
             min_eval = float('inf')
             for move in legal_moves:
                 row, col = move
-                board[row][col] = self.opponent # CORRECTED INDEXING
+                board[row][col] = self.opponent
                 evaluation = self.minimax(board, depth - 1, alpha, beta, True)
-                board[row][col] = Player.EMPTY.value # CORRECTED INDEXING
+                board[row][col] = Player.EMPTY.value
                 min_eval = min(min_eval, evaluation)
                 beta = min(beta, evaluation)
                 if beta <= alpha: break
@@ -89,10 +107,9 @@ class PromptEngineerV2(Agent):
             for c in range(board_size):
                 for dr, dc in directions:
                     line_of_5 = []
-                    # Check if the line of 5 stays within the board bounds
                     if 0 <= r + 4 * dr < board_size and 0 <= c + 4 * dc < board_size:
                         for i in range(5):
-                            line_of_5.append(board[r + i * dr][c + i * dc]) # CORRECTED INDEXING
+                            line_of_5.append(board[r + i * dr][c + i * dc])
                         score += self._score_line(line_of_5, player)
         return score
 
@@ -107,7 +124,7 @@ class PromptEngineerV2(Agent):
         return 0
 
     def _get_legal_moves(self, board) -> List[Tuple[int, int]]:
-        return [(r, c) for r in range(len(board)) for c in range(len(board[0])) if board[r][c] == Player.EMPTY.value] # CORRECTED INDEXING
+        return [(r, c) for r in range(len(board)) for c in range(len(board[0])) if board[r][c] == Player.EMPTY.value]
 
     def _is_game_over(self, board) -> bool:
         score = self._evaluate_board(board)

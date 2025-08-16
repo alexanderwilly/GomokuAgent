@@ -57,11 +57,4 @@ The game runs will be based on the following framework: <br/><br/>
 <img height = "200" src = "https://github-readme-stats.vercel.app/api/pin/?username=sitfoxfly&repo=gomoku-ai">
 </a>
 
-## Contributors
-
-<a id="contributors"></a>
-<a href="https://github.com/alexanderwilly/GomokuAgent/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=alexanderwilly/GomokuAgent" alt="contrib.rocks image" />
-</a>
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

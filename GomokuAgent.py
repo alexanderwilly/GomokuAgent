@@ -72,8 +72,6 @@ Your task:
 
         board_prompt = f"Current board state:\n{board_str}\n"
         board_prompt += f"Current player: {game_state.current_player.value}\n"
-        # board_prompt += f"Move count: {len(game_state.move_history)}\n"
-        # board_size = game_state.board_size
         if game_state.move_history:
             last_move = game_state.move_history[-1]
             board_prompt += f"Last move: {last_move.player.value} at ({last_move.row}, {last_move.col})\n"

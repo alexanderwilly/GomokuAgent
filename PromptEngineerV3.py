@@ -22,12 +22,6 @@ class PromptEngineerV3(LLMGomokuAgent):
         board = game_state.board
         legal_moves = self._get_legal_moves(board)
 
-        print('Board tyoe')
-        print(type(board))
-
-        print('Legal moves type')
-        print(type(legal_moves))
-
         if not legal_moves: return None
         # CORRECTED: Use len() to get the size of a standard Python list
         if len(legal_moves) == len(board) * len(board[0]):
@@ -56,8 +50,6 @@ class PromptEngineerV3(LLMGomokuAgent):
                 best_score = score
                 best_move = move
 
-        print('==>Best Move type')
-        print(type(best_move))
         
         return best_move
 

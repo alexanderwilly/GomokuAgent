@@ -1,7 +1,7 @@
 {
-    "name": "MyLLMGomokuAgent",
-    "agent_class": "my_llm_agent.MyLLMGomokuAgent",
+    "name": "Mark4Agent",
+    "agent_class": "MarkIV.Mark4Agent",
     "author": "Group of 5 (Individual Contribution)",
-    "description": "An LLM-powered Gomoku agent that leverages an open-weight Hugging Face model to play on an 8x8 board.",
+    "description": "An LLM-based agent for playing Gomoku",
     "version": "1.0.0"
 }

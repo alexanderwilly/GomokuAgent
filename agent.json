@@ -1,7 +1,7 @@
 {
     "name": "MyLLMGomokuAgent",
     "agent_class": "my_llm_agent.MyLLMGomokuAgent",
-    "author": "Group of 5 (Individual Contribution)",
+    "author": "Group of 5",
     "description": "An LLM-powered Gomoku agent that leverages an open-weight Hugging Face model to play on an 8x8 board.",
     "version": "1.0.0"
 }

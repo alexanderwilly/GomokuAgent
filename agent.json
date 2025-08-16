@@ -1,7 +1,7 @@
 {
     "name": "Mark4Agent",
     "agent_class": "MarkIV.Mark4Agent",
-    "author": "Group of 5 (Individual Contribution)",
+    "author": "Group of 5",
     "description": "An LLM-based agent for playing Gomoku",
     "version": "1.0.0"
 }
